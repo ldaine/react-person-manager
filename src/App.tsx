@@ -6,30 +6,40 @@ import { IPerson } from './models/IPerson';
 interface IAppProps {
   appName: string; 
 }
-class App extends Component {
-  
-  private persons:IPerson[]; 
-  
-  constructor(props:IAppProps){
+
+interface IAppState {
+  persons: IPerson[]; 
+}
+
+class App extends Component<IAppProps, IAppState> {
+ 
+  constructor(props: IAppProps){
     super(props)
-    this.persons = [
-      {name: "Dorothy D Mendieta", age: 36, hobbies: ['Action Figures', 'Amateur Geology']}, 
-      {name: "Vilma A Cesar", age: 74, hobbies: ['Airplane Combat', 'Arcade Games', 'Poetry']}, 
-      {name: "Spencer K Beeson", age: 24, hobbies: ['Rapping', 'RC Cars']}
-    ]
+
+    this.state = {
+      persons: this.getPersons()
+    };
   }
   
   render() {
     return (
       <div className="App">
-      <h1>Hi, I am an React app!</h1>
+      <h1>{this.props.appName}</h1>
       {
-        this.persons.map((person:IPerson) => {
+        this.state.persons.map((person:IPerson) => {
           return <Person name={person.name} age={person.age}>Hobbies: {person.hobbies.join(', ')}</Person>
         })
       }
       </div>
     );
+  }
+
+  private getPersons = (): IPerson[] => {
+    return [
+      {name: "Dorothy D Mendieta", age: 36, hobbies: ['Action Figures', 'Amateur Geology']}, 
+      {name: "Vilma A Cesar", age: 74, hobbies: ['Airplane Combat', 'Arcade Games', 'Poetry']}, 
+      {name: "Spencer K Beeson", age: 24, hobbies: ['Rapping', 'RC Cars']}
+    ]
   }
 }
 
