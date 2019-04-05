@@ -25,6 +25,7 @@ class App extends Component<IAppProps, IAppState> {
     return (
       <div className="App">
       <h1>{this.props.appName}</h1>
+      <button onClick={this.onSwitchNameButtonClicked}>Switch name</button>
       {
         this.state.persons.map((person:IPerson) => {
           return <Person name={person.name} age={person.age}>Hobbies: {person.hobbies.join(', ')}</Person>
@@ -40,6 +41,14 @@ class App extends Component<IAppProps, IAppState> {
       {name: "Vilma A Cesar", age: 74, hobbies: ['Airplane Combat', 'Arcade Games', 'Poetry']}, 
       {name: "Spencer K Beeson", age: 24, hobbies: ['Rapping', 'RC Cars']}
     ]
+  }
+
+  private onSwitchNameButtonClicked = ():void =>{
+      this.setState({persons: [
+        {name: "Dorothy", age: 36, hobbies: ['Action Figures', 'Amateur Geology']}, 
+        {name: "Vilma", age: 74, hobbies: ['Airplane Combat', 'Arcade Games', 'Poetry']}, 
+        {name: "Spencer", age: 24, hobbies: ['Rapping', 'RC Cars']}
+      ]})
   }
 }
 
