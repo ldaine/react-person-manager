@@ -25,10 +25,10 @@ class App extends Component<IAppProps, IAppState> {
     return (
       <div className="App">
       <h1>{this.props.appName}</h1>
-      <button onClick={this.onSwitchNameButtonClicked}>Switch name</button>
+      <button onClick={this.switchNameHandler}>Switch name</button>
       {
         this.state.persons.map((person:IPerson) => {
-          return <Person name={person.name} age={person.age}>Hobbies: {person.hobbies.join(', ')}</Person>
+          return <Person name={person.name} age={person.age} switchNameHandler = {this.switchNameHandler}>Hobbies: {person.hobbies.join(', ')}</Person>
         })
       }
       </div>
@@ -43,11 +43,11 @@ class App extends Component<IAppProps, IAppState> {
     ]
   }
 
-  private onSwitchNameButtonClicked = ():void =>{
+  private switchNameHandler = ():void =>{
       this.setState({persons: [
-        {name: "Dorothy", age: 36, hobbies: ['Action Figures', 'Amateur Geology']}, 
-        {name: "Vilma", age: 74, hobbies: ['Airplane Combat', 'Arcade Games', 'Poetry']}, 
-        {name: "Spencer", age: 24, hobbies: ['Rapping', 'RC Cars']}
+        {name: "Dorothy", age: Math.floor((Math.random() * 100) + 1), hobbies: ['Action Figures', 'Amateur Geology']}, 
+        {name: "Vilma", age: Math.floor((Math.random() * 100) + 1), hobbies: ['Airplane Combat', 'Arcade Games', 'Poetry']}, 
+        {name: "Spencer", age: Math.floor((Math.random() * 100) + 1), hobbies: ['Rapping', 'RC Cars']}
       ]})
   }
 }
