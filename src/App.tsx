@@ -1,5 +1,5 @@
 import React, { Component, ChangeEvent } from 'react';
-import './App.css';
+import './App.scss';
 import Person from './Person/Person'; 
 import { IPerson } from './models/IPerson';
 
