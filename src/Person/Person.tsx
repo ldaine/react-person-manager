@@ -6,6 +6,7 @@ const Person = (props: IPerson) => {
         <div onClick={()=> props.switchNameHandler('John P')}>
             <p>Hi there, my name is {props.name}, I am {props.age} years old. </p>
             <p>{props.children}</p>
+            <input type="text" onChange={props.onChangeNameHandler} value={props.name}/>
         </div>
     )
     

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, ChangeEvent } from 'react';
 import './App.css';
 import Person from './Person/Person'; 
 import { IPerson } from './models/IPerson';
@@ -28,7 +28,11 @@ class App extends Component<IAppProps, IAppState> {
       <button onClick={this.switchNameHandler.bind(this, 'Estelle')}>Switch name</button>
       {
         this.state.persons.map((person:IPerson) => {
-          return <Person name={person.name} age={person.age} switchNameHandler = {this.switchNameHandler}>Hobbies: {person.hobbies.join(', ')}</Person>
+          return  <Person name={person.name} age={person.age} 
+                         switchNameHandler = {this.switchNameHandler}
+                         onChangeNameHandler={this.onChangeNameHandler}>
+                        Hobbies: {person.hobbies.join(', ')}
+                  </Person>
         })
       }
       </div>
@@ -49,6 +53,15 @@ class App extends Component<IAppProps, IAppState> {
       {name: name, age: Math.floor((Math.random() * 100) + 1), hobbies: ['Action Figures', 'Amateur Geology']}, 
       {name: name, age: Math.floor((Math.random() * 100) + 1), hobbies: ['Airplane Combat', 'Arcade Games', 'Poetry']}, 
       {name: name, age: Math.floor((Math.random() * 100) + 1), hobbies: ['Rapping', 'RC Cars']}
+    ]})
+  }
+
+  private onChangeNameHandler = (event: ChangeEvent<HTMLInputElement>):void =>{
+
+    this.setState({persons: [
+      {name: event.target.value, age: 28, hobbies: ['Action Figures', 'Amateur Geology']}, 
+      {name: 'John P.', age: 28, hobbies: ['Airplane Combat', 'Arcade Games', 'Poetry']}, 
+      {name: 'John P.', age: 28, hobbies: ['Rapping', 'RC Cars']}
     ]})
   }
 }
