@@ -1,5 +1,5 @@
 import React, { Component, ChangeEvent } from 'react';
-import './App.scss';
+import AppModuleScss from './App.module.scss';
 import Person from './Person/Person'; 
 import { IPerson } from './models/IPerson';
 
@@ -23,7 +23,7 @@ class App extends Component<IAppProps, IAppState> {
   
   render() {
     return (
-      <div className="App">
+      <div className={AppModuleScss.App}>
       <h1>{this.props.appName}</h1>
       <button onClick={this.switchNameHandler.bind(this, 'Estelle')}>Switch name</button>
       {

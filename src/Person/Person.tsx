@@ -1,5 +1,6 @@
 import React from 'react';
 import { IPerson } from './IPersonProps';
+import PersonModuleScss from './Person.module.scss';
 
 const Person = (props: IPerson) => {
     return(  
