@@ -1,0 +1,55 @@
+@import '../../styles/colors'; 
+
+.Person {
+    width: 450px;
+    height: 250px;
+    background-color: theme-color('background', 'light');
+    background: theme-color('background', 'gradient');
+    box-shadow: 0 8px 16px -8px theme-color('foreground', 'base');
+    border-radius: 6px;
+    overflow: hidden;
+    margin: 1.5rem auto;
+    position: relative;
+    &Header {
+        position: absolute; 
+        width: 50px; 
+        height: 100%; 
+        background: theme-color('primary', 'gradient');
+        transition: width 0.4s;
+        overflow: hidden;
+        z-index: 2;
+        display: flex; 
+        flex-direction: row; 
+        align-items: center; 
+        text-align: left; 
+        >p:first-of-type{
+            margin: auto .4em; 
+            font-weight: 700;
+        }
+        ul{
+            list-style-type: none; 
+        }
+        &:hover{
+            width: 100%;
+            border-radius: 0 5px 5px 0;
+        }
+    }
+
+    &Main {
+        width: 400px;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        right: 0;
+        z-index: 1;
+        box-sizing: border-box;
+        padding: 1rem;
+        padding-top: 0;
+
+        h1 {
+            text-align: center; 
+            font-size: 1.4rem; 
+            font-weight: 500; 
+        }
+    }
+}

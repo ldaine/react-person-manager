@@ -1,6 +1,6 @@
 import React, { Component, ChangeEvent } from 'react';
 import AppModuleScss from './App.module.scss';
-import Person from './Person/Person'; 
+import Person from './components/Person/Person'; 
 import { IPerson } from './models/IPerson';
 
 interface IAppProps {
@@ -25,7 +25,7 @@ class App extends Component<IAppProps, IAppState> {
     return (
       <div className={AppModuleScss.App}>
       <h1>{this.props.appName}</h1>
-      <button onClick={this.switchNameHandler.bind(this, 'Estelle')}>Switch name</button>
+      <button className={AppModuleScss.PrimaryButton} onClick={this.switchNameHandler.bind(this, 'Estelle')}>Switch name</button>
       {
         this.state.persons.map((person:IPerson) => {
           return  <Person name={person.name} age={person.age} 

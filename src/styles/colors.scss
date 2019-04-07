@@ -1,0 +1,23 @@
+$theme-colors: (
+  'primary': (
+    'lightblue': #b1becd,
+    'lightgrey': #c9d1d8,
+    'dark': #4a7db1, 
+    'gradient': linear-gradient(to right, #b1becd, #c9d1d8)
+  ),
+  'foreground': (
+    'base': #393939,
+    'light': #6e6e6e,
+    'dark': #111
+  ),
+  'background': (
+    'base': #f8f8f8,
+    'light': #fff,
+    'gredient': linear-gradient(#f8f8f8, #fff)
+  )
+);
+
+@function theme-color($key: 'primary', $variant: 'base') {
+    $map: map-get($theme-colors, $key);
+    @return map-get($map, $variant);
+}
