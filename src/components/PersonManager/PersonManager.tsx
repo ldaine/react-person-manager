@@ -24,18 +24,20 @@ class PersonManager extends React.Component<IPersonmanagerProps, IPersonmanagerS
                 <button className={AppModuleScss.PrimaryButton} onClick={this.togglePersonsHandler}>Toggle Visibility</button>
                 <button className={AppModuleScss.PrimaryButton} onClick={this.resetData}>Reset</button>
                 {   
-                    !!this.state.isVisible && 
-                    <div>
-                        {
-                            this.state.persons.map((person:IPerson) => {
-                                return  <Person name={person.name} age={person.age} 
-                                                switchNameHandler = {this.switchNameHandler}
-                                                onChangeNameHandler={this.onChangeNameHandler}>
-                                                Hobbies: {person.hobbies.join(', ')}
-                                        </Person>
-                                })
-                        }
-                    </div>
+                    !!this.state.isVisible ?  
+                        <div>
+                            {
+                                this.state.persons.map((person:IPerson) => {
+                                    return  <Person name={person.name} age={person.age} 
+                                                    switchNameHandler = {this.switchNameHandler}
+                                                    onChangeNameHandler={this.onChangeNameHandler}>
+                                                    Hobbies: {person.hobbies.join(', ')}
+                                            </Person>
+                                    })
+                            }
+                        </div>
+                    :
+                        <div><p>Content is hidden. Click on 'Togggle Visibility' to show the content.</p></div>
                 }
             </div>
         );
