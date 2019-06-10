@@ -4,7 +4,7 @@ import { IPersonProps } from './IPersonProps';
 
 const Person = (props: IPersonProps) => {
     return(  
-        <div className={PersonModuleScss.Person} onClick={()=> props.switchNameHandler('John P')}>
+        <div className={PersonModuleScss.Person} onClick={()=> props.switchNameHandler(`${props.name} - this is a test`)}>
             <div className={PersonModuleScss.PersonHeader}>
                 <p>MORE</p>
                 <div>
@@ -19,7 +19,6 @@ const Person = (props: IPersonProps) => {
             <div className={PersonModuleScss.PersonMain}>
                 <h1>{props.name}</h1>
                 <p>Hi, my name is {props.name}, I am {props.age} years old. </p>
-                <p>{props.children}</p>
                 <input type="text" onChange={props.onChangeNameHandler} value={props.name}/>
             </div>
         </div>

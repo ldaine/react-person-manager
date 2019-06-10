@@ -4,6 +4,7 @@ import { IPersonmanagerState } from './IPersonmanagerState';
 import AppModuleScss from '../../App.module.scss';
 import Person from './../Person/Person';
 import { IPerson } from './../../models/IPerson';
+import { PERSONS } from '../../DATA';
 
 
 class PersonManager extends React.Component<IPersonmanagerProps, IPersonmanagerState>{
@@ -21,7 +22,7 @@ class PersonManager extends React.Component<IPersonmanagerProps, IPersonmanagerS
             
             <div>
                 <button className={AppModuleScss.PrimaryButton} onClick={this.togglePersonsHandler}>Toggle Visibility</button>
-                <button className={AppModuleScss.PrimaryButton} onClick={this.switchNameHandler.bind(this, 'Estelle')}>Switch name</button>
+                <button className={AppModuleScss.PrimaryButton} onClick={this.resetData}>Reset</button>
                 {   
                     !!this.state.isVisible && 
                     <div>
@@ -65,6 +66,15 @@ class PersonManager extends React.Component<IPersonmanagerProps, IPersonmanagerS
                     isVisible: !prevState.isVisible
                 }
             })
+      }
+
+      private resetData = () => {
+        this.setState(prevState => {
+            return {
+                ...prevState, 
+                persons: [...PERSONS]
+            }
+        })
       }
 }
 
