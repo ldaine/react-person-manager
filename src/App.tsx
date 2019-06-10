@@ -1,7 +1,7 @@
-import React, { Component, ChangeEvent } from 'react';
+import React from 'react';
 import AppModuleScss from './App.module.scss';
-import Person from './components/Person/Person'; 
 import { IPerson } from './models/IPerson';
+import PersonManager from './components/PersonManager/PersonManager';
 
 interface IAppProps {
   appName: string; 
@@ -11,7 +11,7 @@ interface IAppState {
   persons: IPerson[]; 
 }
 
-class App extends Component<IAppProps, IAppState> {
+class App extends React.Component<IAppProps, IAppState> {
  
   constructor(props: IAppProps){
     super(props)
@@ -24,17 +24,8 @@ class App extends Component<IAppProps, IAppState> {
   render() {
     return (
       <div className={AppModuleScss.App}>
-      <h1>{this.props.appName}</h1>
-      <button className={AppModuleScss.PrimaryButton} onClick={this.switchNameHandler.bind(this, 'Estelle')}>Switch name</button>
-      {
-        this.state.persons.map((person:IPerson) => {
-          return  <Person name={person.name} age={person.age} 
-                         switchNameHandler = {this.switchNameHandler}
-                         onChangeNameHandler={this.onChangeNameHandler}>
-                        Hobbies: {person.hobbies.join(', ')}
-                  </Person>
-        })
-      }
+        <h1>{this.props.appName}</h1>
+        <PersonManager persons={this.state.persons} />
       </div>
     );
   }
@@ -47,23 +38,7 @@ class App extends Component<IAppProps, IAppState> {
     ]
   }
 
-  private switchNameHandler = (name: string):void =>{
-
-    this.setState({persons: [
-      {name: name, age: Math.floor((Math.random() * 100) + 1), hobbies: ['Action Figures', 'Amateur Geology']}, 
-      {name: name, age: Math.floor((Math.random() * 100) + 1), hobbies: ['Airplane Combat', 'Arcade Games', 'Poetry']}, 
-      {name: name, age: Math.floor((Math.random() * 100) + 1), hobbies: ['Rapping', 'RC Cars']}
-    ]})
-  }
-
-  private onChangeNameHandler = (event: ChangeEvent<HTMLInputElement>):void =>{
-
-    this.setState({persons: [
-      {name: event.target.value, age: 28, hobbies: ['Action Figures', 'Amateur Geology']}, 
-      {name: 'John P.', age: 28, hobbies: ['Airplane Combat', 'Arcade Games', 'Poetry']}, 
-      {name: 'John P.', age: 28, hobbies: ['Rapping', 'RC Cars']}
-    ]})
-  }
 }
+
 
 export default App;

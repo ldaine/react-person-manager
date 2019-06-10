@@ -1,6 +1,6 @@
 import { ReactNode, ChangeEvent } from "react";
 
-export interface IPerson {
+export interface IPersonProps {
     name: string; 
     age: number; 
     children: ReactNode; 
