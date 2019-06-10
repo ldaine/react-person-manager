@@ -2,6 +2,7 @@ import React from 'react';
 import AppModuleScss from './App.module.scss';
 import { IPerson } from './models/IPerson';
 import PersonManager from './components/PersonManager/PersonManager';
+import { PERSONS } from './DATA'; 
 
 interface IAppProps {
   appName: string; 
@@ -31,14 +32,9 @@ class App extends React.Component<IAppProps, IAppState> {
   }
 
   private getPersons = (): IPerson[] => {
-    return [
-      {name: "Dorothy D Mendieta", age: 36, hobbies: ['Action Figures', 'Amateur Geology']}, 
-      {name: "Vilma A Cesar", age: 74, hobbies: ['Airplane Combat', 'Arcade Games', 'Poetry']}, 
-      {name: "Spencer K Beeson", age: 24, hobbies: ['Rapping', 'RC Cars']}
-    ]
+    return PERSONS; 
   }
 
 }
-
 
 export default App;
