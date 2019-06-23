@@ -1,19 +1,18 @@
 import React from 'react'; 
+import { ICharProps } from './ICharProps';
 
-interface ICharProps {
-    character: string; 
-    onClick: (index: number) => void; 
-    charIndex: number; 
-}
 const Char = (props:ICharProps) => {  
     const style = {
         inlineBlock: '16px', 
         padding: '16px', 
-        margin: '16px', 
+        margin: '2px', 
         border: '1px solid black', 
+        display: "inline-block"
     }
     return (
-        <div style={style} onClick= {() => props.onClick(props.charIndex)}>{props.character}</div>
+        <div style={style} onClick= {() => props.onClick(props.charIndex)}>
+            {props.character}
+        </div>
     )
 }; 
 
