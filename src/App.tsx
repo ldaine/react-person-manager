@@ -5,6 +5,7 @@ import PersonManager from './components/PersonManager/PersonManager';
 import { PERSONS } from './DATA'; 
 import Validation from './components/Validation/Validation';
 import Char from './components/Char/Char';
+import ErrorBoundary from './components/ErrorBoundary/ErrorBoundary';
 
 interface IAppProps {
   appName: string; 
@@ -41,7 +42,10 @@ class App extends React.Component<IAppProps, IAppState> {
                           onClick={this.onCharClicked}/> )
           })
         }
-        <PersonManager persons={this.state.persons} />
+        <ErrorBoundary>
+          <PersonManager persons={this.state.persons} />   
+        </ErrorBoundary>
+               
       </div>
     );
   }

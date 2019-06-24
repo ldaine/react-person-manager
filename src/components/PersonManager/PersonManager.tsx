@@ -4,8 +4,7 @@ import { IPersonmanagerState } from './IPersonmanagerState';
 import AppModuleScss from '../../App.module.scss';
 import Person from './../Person/Person';
 import { IPerson } from './../../models/IPerson';
-import { PERSONS } from '../../DATA';
-
+import { PERSONS, NAMES } from '../../DATA';
 
 class PersonManager extends React.Component<IPersonmanagerProps, IPersonmanagerState>{
     constructor(props: IPersonmanagerProps){
@@ -19,7 +18,6 @@ class PersonManager extends React.Component<IPersonmanagerProps, IPersonmanagerS
 
     render() {
         return (
-            
             <div>
                 <button className={AppModuleScss.PrimaryButton} onClick={this.togglePersonsHandler}>Toggle Visibility</button>
                 <button className={AppModuleScss.PrimaryButton} onClick={this.resetData}>Reset</button>
@@ -27,9 +25,10 @@ class PersonManager extends React.Component<IPersonmanagerProps, IPersonmanagerS
                     !!this.state.isVisible ?  
                         <div>
                             {
-                                this.state.persons.map((person:IPerson) => {
-                                    return  <Person name={person.name} age={person.age} 
-                                                    switchNameHandler = {this.switchNameHandler}
+                                this.state.persons.map((person:IPerson, index) => {
+                                    return  <Person person={person} 
+                                                    key={person.id}
+                                                    switchNameHandler={this.switchNameHandler}
                                                     onChangeNameHandler={this.onChangeNameHandler}>
                                                     Hobbies: {person.hobbies.join(', ')}
                                             </Person>
@@ -43,22 +42,29 @@ class PersonManager extends React.Component<IPersonmanagerProps, IPersonmanagerS
         );
     }
 
-      private switchNameHandler = (name: string):void =>{
+      private switchNameHandler = (id:number):void =>{
+        const name = NAMES[Math.floor((Math.random() * NAMES.length) + 0)]
+        const persons:IPerson[] = [...this.state.persons]; 
 
-        this.setState({persons: [
-          {name: name, age: Math.floor((Math.random() * 100) + 1), hobbies: ['Action Figures', 'Amateur Geology']}, 
-          {name: name, age: Math.floor((Math.random() * 100) + 1), hobbies: ['Airplane Combat', 'Arcade Games', 'Poetry']}, 
-          {name: name, age: Math.floor((Math.random() * 100) + 1), hobbies: ['Rapping', 'RC Cars']}
-        ]})
+        const personIndex = persons.findIndex(p => p.id === id); 
+
+        if(personIndex > -1){
+            persons[personIndex].name = name; 
+            this.setState({persons: persons}); 
+        }
       }
     
-      private onChangeNameHandler = (event: React.ChangeEvent<HTMLInputElement>):void =>{
-    
-        this.setState({persons: [
-          {name: event.target.value, age: 28, hobbies: ['Action Figures', 'Amateur Geology']}, 
-          {name: 'John P.', age: 28, hobbies: ['Airplane Combat', 'Arcade Games', 'Poetry']}, 
-          {name: 'John P.', age: 28, hobbies: ['Rapping', 'RC Cars']}
-        ]})
+      private onChangeNameHandler = (event: React.ChangeEvent<HTMLInputElement>, id: number):void =>{
+
+        const name = event.target.value; 
+        const persons:IPerson[] = [...this.state.persons]; 
+
+        const personIndex = persons.findIndex(p => p.id === id); 
+
+        if(personIndex > -1){
+            persons[personIndex].name = name; 
+            this.setState({persons: persons}); 
+        }
       }
     
       private togglePersonsHandler = ():void =>{

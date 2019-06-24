@@ -1,9 +1,9 @@
 import { ReactNode, ChangeEvent } from "react";
+import { IPerson } from "../../models/IPerson";
 
 export interface IPersonProps {
-    name: string; 
-    age: number; 
+    person: IPerson; 
     children: ReactNode; 
-    switchNameHandler(name: string):void; 
-    onChangeNameHandler(event: ChangeEvent<HTMLInputElement>):void; 
+    switchNameHandler: (id: number)=>void; 
+    onChangeNameHandler: (event: ChangeEvent<HTMLInputElement>, id: number)=>void; 
 }
